@@ -1,0 +1,22 @@
+services:
+  fenrus:
+    image: revenz/fenrus
+    container_name: myfenrus
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - ./app:/app/data
+    restart: unless-stopped
+    hostname: myfenrus.tp.b1
+    networks:
+      front:
+        aliases:
+          - myfenrus.front.lab
+      sso:
+        aliases:
+          - myfenrus.sso.lab
+networks:
+  front:
+    external: true
+  sso:
+    external: true

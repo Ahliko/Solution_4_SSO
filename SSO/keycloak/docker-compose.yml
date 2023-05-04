@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  mykeycloak:
+    image: quay.io/keycloak/keycloak:21.1.0
+    container_name: mykeycloak
+    volumes:
+      - ./server.crt:/tmp/server.crt
+      - ./server.key:/tmp/server.key
+      - ./realms:/opt/keycloak/data/import
+    hostname: mykeycloak.tp.b1
+    networks:
+      front:
+        aliases:
+          - mykeycloak.front.lab
+      sso:
+        aliases:
+          - mykeycloak.sso.lab
+    command:
+      - start --db=postgres --features=token-exchange --db-username=keycloak --db-password=keycloak --db-url-host=postgres --https-certificate-file=/tmp/server.crt --https-certificate-key-file=/tmp/server.key --proxy edge --hostname-strict=false --spi-x509cert-lookup-provider=nginx --spi-x509cert-lookup-nginx-ssl-client-cert=SSL_CLIENT_CERT --spi-x509cert-lookup-nginx-ssl-cert-chain-prefix=CERT_CHAIN --spi-x509cert-lookup-nginx-certificate-chain-length=10 --hostname-url https://mykeycloak.tp.b1 --import-realm
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+  postgres:
+    image: postgres:13.2
+    restart: unless-stopped
+    networks:
+      sso:
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+    volumes:
+      - ./backup:/tmp/backup
+
+networks:
+  sso:
+    external: true
+  front:
+    external: true

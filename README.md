@@ -59,7 +59,7 @@ You can retrieve the Client ID and the Client secret <br
 
 ➜ go back to the GitLab identity provider on Keycloak :
  1) On Client ID put ➜ Application ID
- 2) On Client secret ➜ Secret<br>
+ 2) On Client secret ➜ Secret <br>
 ➜ Add 
 
 - **GitLab** :

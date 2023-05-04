@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  nginx_rproxy:
+    image: nginx:latest
+    container_name: nginx_rproxy
+    restart: unless-stopped
+    networks:
+      front:
+        aliases:
+          - nginx_rproxy.front.lab
+    volumes:
+      - ./keycloak.conf:/etc/nginx/conf.d/keycloak.conf
+      - ./fenrus.conf:/etc/nginx/conf.d/fenrus.conf
+      - ./server.crt:/tmp/server.crt
+      - ./server.key:/tmp/server.key
+    ports:
+      - 80:80
+      - 443:443
+networks:
+  front:
+    external: true
