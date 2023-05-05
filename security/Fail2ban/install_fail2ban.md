@@ -10,7 +10,7 @@ sudo dnf install fail2ban
 - add the file [jail.local](/securit%C3%A9/Fail2ban/jail.local) in the directory : /etc/fail2ban/
 
 ## Configuration of the notifications on discord (optional): 
-- add the file [discord_notifications.conf](/securit%C3%A9/Fail2ban/discord_notifications.conf) in the directory : /etc/fail2ban/
+- add the file [discord_notifications.conf](/securit%C3%A9/Fail2ban/discord_notifications.conf) in the directory : /etc/fail2ban/action.d/
 
 - create a webhook on your discord server :
 
