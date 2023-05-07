@@ -13,6 +13,28 @@ Keycloak is an authentication and access management solution that centralizes us
 
 ## **Installation:**
 
+Download this project on your server : <br>
+```bash
+wget https://github.com/Ahliko/Solution_4_SSO/archive/refs/heads/main.zip
+```
+
+Unzip the project : <br>
+```bash
+unzip main.zip
+```
+
+Go to the folder : <br>
+```bash
+cd Solution_4_SSO-main
+```
+
+Run the script as **sudo** (Very important): <br>
+```bash
+sudo bash install.sh
+```
+
+You can check the log in the file **install.log** <br>
+
 ---
 
 ## **Configuration:**
